@@ -1,0 +1,35 @@
+﻿
+
+@{
+    ViewData["Title"] = "ProductDetail";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div>
+    <h1> Product Details </h1>
+    <div>
+        <table>
+            <tr>
+                <th>Product ID </th>
+                <th>Product Name </th>
+                <th>Product Rate </th>
+            </tr>
+            <tr>
+                @foreach (var i in ViewBag.products)
+                {
+                    if(i.id == ViewBag.id)
+                    {
+                        <td> @i.id </td>
+                        <td> @i.PName </td>
+                        <td> @i.Rate </td>
+                    }
+                }
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+@*
+    hiii
+*@

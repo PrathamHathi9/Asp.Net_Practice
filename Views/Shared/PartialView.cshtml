@@ -1,0 +1,15 @@
+﻿<div>
+    <ul>
+        @if (ViewBag.Lists != null && ViewBag.Lists.Count > 0)
+        {
+            for (var i = 0; i < ViewBag.Lists.Count; i++)
+            {
+                <li> @ViewBag.Lists[i] </li>
+            }
+        }
+        else
+        {
+            <li>No items available </li>
+        }
+    </ul>
+</div>

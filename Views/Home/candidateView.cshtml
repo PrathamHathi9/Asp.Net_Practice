@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Candidate Page";
+}
+
+<!-- using if else in view engine -->
+@{
+    string allowance = "Not Allowed";
+
+    if(ViewBag.gender == "male" || ViewBag.gender == "female")
+    {
+        allowance = "Allowed";
+    }
+}
+
+<div>
+    <table>
+        <tr>
+            <th> first name </th>
+            <th> last name </th>
+            <th> email </th>
+            <th>phone number </th>
+            <th> gender </th>
+            <th> resume </th>
+            <th> status </th>
+            <th> Allowance </th>
+        </tr>
+        <tr>
+            <td> @ViewBag.first_name </td>
+            <td> @ViewBag.last_name </td>
+            <td> @ViewBag.email </td>
+            <td> @ViewBag.phone_number </td>
+            <td> @ViewBag.gender </td>
+            <td> @ViewBag.resume </td>
+            <td> @ViewBag.status  </td>
+            <td> @allowance </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    @if(allowance == "Allowed")
+    {
+        <span> Welcome to the company </span>
+    }
+    else
+    {
+        <span> Getout of the company </span>
+    }
+</div>
+
+<div>
+    @for (int i = 1; i <= ViewBag.loop; i++)
+    {
+        <span> @i </span>
+    }
+</div>
+
+<div>
+    @foreach(var sub in ViewBag.sub)
+    {
+        <span> @sub </span>
+    }
+</div>

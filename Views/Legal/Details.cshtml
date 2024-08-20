@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+
+<h1>Details of the Candidates</h1>
+
+@{
+    ViewBag.Message = "this is Details Page"; 
+}
+<a href="@Url.Action("Create", "Legal")">Create Data</a>
+
+<table class="Table">
+    <thead>
+        <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Rate </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in ViewBag.product)
+        {
+            <tr>
+            <td> @i.id </td>
+            <td> 
+               <a href="/Legal/Detail/@i.id">@i.PName </a>
+             </td>
+            <td> @i.Rate </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<h3> here is the real data </h3>
+<a href="/Legal/List">click</a>
+
