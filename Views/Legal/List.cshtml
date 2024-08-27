@@ -6,6 +6,7 @@
 @model List<dotNet.Models.ProductDataModel>
 
 <head>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +23,6 @@
         }
 
         form {
-            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -61,26 +61,26 @@
                 text-decoration: underline;
             }
 
-        #customers {
+        #products {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-            #customers td, #customers th {
+            #products td, #products th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #customers tr:nth-child(even) {
+            #products tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
 
-            #customers tr:hover {
+            #products tr:hover {
                 background-color: #ddd;
             }
 
-            #customers th {
+             #products th {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
@@ -89,19 +89,68 @@
             }
 
         button {
-            width: 50%;
-            padding: 10px;
+            width: 25%;
+            padding: 5px;
             background-color: #007BFF;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
 
-            button:hover {
-                background-color: #0056b3;
+        .CustomerTable {
+            top: 0;
+            right: 1;
+            margin: 2%;
+            padding: 2%;
+            width: 14%;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 100%;
+            margin: 1%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+            /* Form Label Styling */
+            .form-container label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 8px;
             }
+
+            /* Form Input and Select Styling */
+            .form-container input[type="text"],
+            .form-container select {
+                width: calc(100% - 22px);
+                padding: 9px;
+                margin: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box; /* Ensures padding is included in width */
+            }
+
+            /* Button Styling */
+            .form-container button {
+                background-color: #007bff;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+                .form-container button:hover {
+                    background-color: #0056b3;
+                }
     </style>
 </head>
 
@@ -112,21 +161,39 @@
 
     <a href="@Url.Action("Create", "Legal")">Create Data</a>
 
-    <form asp-controller="Legal" asp-action="displayList" method="post">
-        <div>
-            <label for="finder">Filter :</label>
-            <input type="text" id="finder" name="finder" placeholder="Enter Name here">
-        </div>
-        <div>
-            <button type="submit">Submit </button>
-        </div>
-    </form>
+    <div class="form-container">
+        <form asp-controller="Legal" asp-action="displayList" method="post">
+            <div>
+                <label for="finder">Filter :</label>
+                <select id="finder" name="finder">
+                    <option value=""> Please Enter the Value</option>
+                    @if(ViewBag.products is not null)
+                    {
+                        @foreach (var i in ViewBag.products)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 
-    <table id="customers">
+    <table id="products">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>
+                    Name
+                    <select name="filterOption" form="filterForm">
+                        <option value="">Filter</option>
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </select>
+                </th>
                 <th>Rate</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -145,15 +212,27 @@
                         <a asp-controller="Legal" asp-action="GetFormUpdate" asp-route-id="@i.id" asp-route-PName="@i.PName" asp-route-Rate="@i.Rate">Edit</a>
                     </td>
                     <td>
-                       <!-- <a asp-controller="Legal" asp-action="DeleteData" asp-route-id="@i.id">Delete</a>-->
-                       <form asp-controller="Legal" asp-action="DeleteData" method="post" style="display: inline;">
-                           <input type="hidden" name="id" value="@i.id" />
-                           <button type="submit" style="background-color: red; "> Delete </button>
-                       </form>
+                        <form asp-controller="Legal" asp-action="DeleteData" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@i.id" />
+                            <button type="submit" style="background-color: red;">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    <form id="filterForm" asp-controller="Legal" asp-action="Filter" method="post">
+        <button type="submit">Filter Submit</button>
+    </form>
+
+
+
+    <div class="CustomerTable">
+        <h5> Create the Customer here : </h5>
+        <a href="/Legal/ShowCustomer"> Create Customer </a>
+    </div>
+
+
 </body>
 

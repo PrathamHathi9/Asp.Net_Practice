@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewData["Title"] = "ShowConsumer";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@model List<dotNet.Models.CustomerDataModel>
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin: 80px;
+        overflow-y: scroll;
+        overflow-x: auto;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #333;
+            color: white;
+        }
+
+    .Pagination {
+        backgroud: black;
+        margin-left: 20%;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+        .pagination a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+    /* #back {
+        top: 0;
+        left: 1;
+    }
+
+    #forward {
+        top:0;
+        right: 1;
+    } */
+</style>
+<div>
+<table id="customers">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>PhoneNo</th>
+            <th>Product Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody style="overflow: scroll; height: 100px;">
+
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.Name</td>
+                <td>@i.phoneNo</td>
+                <td>@i.ProductId</td>
+                <td><a asp-controller="Legal" asp-action="ConsumerFormUpdate" asp-route-id="@i.Id" asp-route-Name="@i.Name" asp-route-phoneNo="@i.phoneNo" asp-route-ProductId="@i.ProductId">Edit</a></td>
+                <td>Delete</td>
+            </tr>
+        }
+
+    </tbody>
+    </table>
+    </div>
+
+<div class="pagination">
+    <a href="#">&laquo; Previous</a>
+    <a href="#">1</a>
+    <a href="#" class="active">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">Next &raquo;</a>
+</div>
+

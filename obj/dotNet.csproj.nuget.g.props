@@ -377,6 +377,7 @@
     <PkgMicrosoft_CodeAnalysis_AnalyzerUtilities Condition=" '$(PkgMicrosoft_CodeAnalysis_AnalyzerUtilities)' == '' ">C:\Users\DESKTOP\.nuget\packages\microsoft.codeanalysis.analyzerutilities\3.3.0</PkgMicrosoft_CodeAnalysis_AnalyzerUtilities>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\DESKTOP\.nuget\packages\microsoft.entityframeworkcore.tools\8.0.7</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\DESKTOP\.nuget\packages\jquery\3.7.1</PkgjQuery>
+    <PkgFontAwesome Condition=" '$(PkgFontAwesome)' == '' ">C:\Users\DESKTOP\.nuget\packages\fontawesome\4.7.0</PkgFontAwesome>
     <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\DESKTOP\.nuget\packages\entityframework\6.5.1</PkgEntityFramework>
   </PropertyGroup>
 </Project>

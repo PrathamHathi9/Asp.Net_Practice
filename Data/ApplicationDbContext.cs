@@ -10,6 +10,7 @@ namespace dotNet.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
 
         public DbSet<Student> Students { get; set; }
-        public DbSet<ProductDataModel> products { get; set; } 
+        public DbSet<ProductDataModel> products { get; set; }
+        public DbSet<CustomerDataModel> customers { get; set; }
     }
 }
